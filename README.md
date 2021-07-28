@@ -36,6 +36,9 @@ If you're looking to contribute to Gradle or provide a patch/pull request, you c
 install 
 ./gradlew install -Pgradle_installPath=/Users/zhangwei.abc/gradle
 run
-/Users/zhangwei.abc/gradle/bin/gradle
+/Users/zhangwei.abc/gradle/bin/gradle >a.txt
+
+/Users/zhangwei.abc/gradle/bin/gradle :miniapp_plugin:assembleDouyinCnDebug --no-daemon
+
 
 

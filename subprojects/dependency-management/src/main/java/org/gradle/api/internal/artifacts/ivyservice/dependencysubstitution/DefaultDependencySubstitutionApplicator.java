@@ -30,6 +30,8 @@ public class DefaultDependencySubstitutionApplicator implements DependencySubsti
     @Override
     public SubstitutionResult apply(DependencyMetadata dependency) {
         DependencySubstitutionInternal details = new DefaultDependencySubstitution(dependency.getSelector());
+        System.out.println("DefaultDependencySubstitutionApplicator details "
+            + details.getRuleDescriptors() + "target " + details.getTarget());
         try {
             rule.execute(details);
         } catch (Exception e) {

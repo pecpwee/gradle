@@ -134,6 +134,7 @@ public class DefaultTaskExecutionGraph implements TaskExecutionGraphInternal {
         for (Task task : tasks) {
             taskSet.add(task);
             requestedTasks.add(task);
+            System.out.println("DefaultTaskExecutionGraph: addEntryTasks:" + task.toString());
         }
 
         executionPlan.addEntryTasks(taskSet);

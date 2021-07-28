@@ -527,13 +527,23 @@ public class NodeState implements DependencyGraphNode {
      */
     static DependencyState maybeSubstitute(DependencyState dependencyState, DependencySubstitutionApplicator dependencySubstitutionApplicator) {
         DependencySubstitutionApplicator.SubstitutionResult substitutionResult = dependencySubstitutionApplicator.apply(dependencyState.getDependency());
+
+        System.out.println("NodeState maybeSubstitute：" + dependencyState.getModuleIdentifier().getGroup() + ":" + dependencyState.getModuleIdentifier().getName());
+
         if (substitutionResult.hasFailure()) {
             dependencyState.failure = new ModuleVersionResolveException(dependencyState.getRequested(), substitutionResult.getFailure());
+            System.out.println(
+                "NodeState dependencyState.failure getDisplayName:" + dependencyState.getRequested().getDisplayName()
+                + " substitutionResult.getFailure：" + substitutionResult.getFailure());
             return dependencyState;
         }
 
         DependencySubstitutionInternal details = substitutionResult.getResult();
         if (details != null && details.isUpdated()) {
+            System.out.println(
+                " NodeState detail:" + details.getTarget().getDisplayName()
+                + " target:" + details.getTarget().getDisplayName()
+                + " getRuleDescriptors():" + details.getRuleDescriptors().size());
             return dependencyState.withTarget(details.getTarget(), details.getRuleDescriptors());
         }
         return dependencyState;

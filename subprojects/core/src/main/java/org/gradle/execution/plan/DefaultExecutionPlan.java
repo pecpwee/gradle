@@ -136,13 +136,19 @@ public class DefaultExecutionPlan implements ExecutionPlan {
         Set<Node> nodesInUnknownState = Sets.newLinkedHashSet();
 
         List<Task> sortedTasks = new ArrayList<Task>(tasks);
+
+
         Collections.sort(sortedTasks);
         for (Task task : sortedTasks) {
+            System.out.println("DefaultTaskExecutionGraph: addEntryTasks:" + task.toString());
+
             TaskNode node = taskNodeFactory.getOrCreateNode(task);
             if (node.isMustNotRun()) {
+                System.out.println("node.isMustNotRun:" + task);
                 requireWithDependencies(node);
             } else if (filter.isSatisfiedBy(task)) {
                 node.require();
+                System.out.println("node.require：" + task);
             }
             entryTasks.add(node);
             queue.add(node);
