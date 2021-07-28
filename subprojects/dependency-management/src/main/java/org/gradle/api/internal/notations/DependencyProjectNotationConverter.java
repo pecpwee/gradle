@@ -39,6 +39,7 @@ public class DependencyProjectNotationConverter implements NotationConverter<Pro
 
     @Override
     public void convert(Project notation, NotationConvertResult<? super ProjectDependency> result) throws TypeConversionException {
+        System.out.println("DependencyProjectNotationConverter name:" + notation.getDisplayName() + " path:" + notation.getPath());
         result.converted(factory.create(notation));
     }
 }

@@ -45,6 +45,8 @@ public class DependencyStringNotationConverter<T> implements NotationConverter<S
 
     @Override
     public void convert(String notation, NotationConvertResult<? super T> result) throws TypeConversionException {
+        System.out.println("DependencyStringNotationConverter notation:" + notation);
+
         result.converted(createDependencyFromString(notation));
     }
 
@@ -66,7 +68,7 @@ public class DependencyStringNotationConverter<T> implements NotationConverter<S
             return new ParsedModuleStringNotation(notation, null);
         }
         int versionIndx = notation.lastIndexOf(':');
-        if (versionIndx<idx) {
+        if (versionIndx < idx) {
             return new ParsedModuleStringNotation(notation.substring(0, idx), notation.substring(idx + 1));
         }
         return new ParsedModuleStringNotation(notation, null);

@@ -33,5 +33,9 @@ If you're looking to contribute to Gradle or provide a patch/pull request, you c
 
 
 ## MY COMMAND
+install 
 ./gradlew install -Pgradle_installPath=/Users/zhangwei.abc/gradle
+run
+/Users/zhangwei.abc/gradle/bin/gradle
+
 
