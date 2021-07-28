@@ -116,6 +116,11 @@ public class DefaultBuildLifecycleController implements BuildLifecycleController
     }
 
     @Override
+    public void finalizeWorkGraph() {
+        controller.inState(State.TaskSchedule, () -> workPreparer.finalizeWorkGraph(gradle));
+    }
+
+    @Override
     public ExecutionResult<Void> executeTasks() {
         // Execute tasks and transition back to "configure", as this build may run more tasks;
         return controller.tryTransition(State.TaskSchedule, State.Configure, () -> workExecutor.execute(gradle));

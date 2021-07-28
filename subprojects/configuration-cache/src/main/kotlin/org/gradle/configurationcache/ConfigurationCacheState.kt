@@ -56,6 +56,7 @@ import org.gradle.initialization.RootBuildCacheControllerSettingsProcessor
 import org.gradle.initialization.SettingsLocation
 import org.gradle.internal.Actions
 import org.gradle.internal.build.BuildStateRegistry
+import org.gradle.internal.build.BuildWorkPreparer
 import org.gradle.internal.build.IncludedBuildState
 import org.gradle.internal.build.PublicBuildPath
 import org.gradle.internal.build.RootBuildState
@@ -136,7 +137,7 @@ class ConfigurationCacheState(
                 state.children.forEach(::addNodesForChildBuilds)
             }
             taskGraph.populateTaskGraphs()
-            state.build.gradle.taskGraph.populate()
+            state.build.gradle.serviceOf<BuildWorkPreparer>().finalizeWorkGraph(state.build.gradle)
         }
     }
 

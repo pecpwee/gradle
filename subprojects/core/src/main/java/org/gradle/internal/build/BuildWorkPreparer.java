@@ -23,4 +23,6 @@ import java.util.function.Consumer;
 
 public interface BuildWorkPreparer {
     void populateWorkGraph(GradleInternal gradle, Consumer<? super TaskExecutionGraphInternal> action);
+
+    void finalizeWorkGraph(GradleInternal gradle);
 }

@@ -80,7 +80,7 @@ public class DefaultBuildWorkGraph implements BuildWorkGraph {
     @Override
     public void prepareForExecution() {
         if (tasksScheduled) {
-            taskGraph.populate();
+            controller.finalizeWorkGraph();
         }
         updateTasksPriorToExecution();
     }
